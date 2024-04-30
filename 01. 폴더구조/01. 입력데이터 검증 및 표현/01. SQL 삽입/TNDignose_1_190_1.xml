@@ -1,0 +1,24 @@
+1: <?xml version=”1.0” encoding=”UTF-8”?> 
+2: <!DOCTYPE sqlMap PUBLIC “-//iBATIS.com//DTD SQL Map 2.0//EN”
+“http://www. ibatis.com/dtd/sql-map-2.dtd”>
+3: <sqlMap namespace=”Student”>
+4: <resultMap id=”StudentResult” class=”Student”>
+5: <result column=”ID” property=”id” />
+6: <result column=”NAME” property=”name” />
+7: </resultMap>
+8: <select id=”listStudents” resultMap=”StudentResult”>
+9: SELECT NUM, NAME 
+10: FROM STUDENTS 
+11: ORDER BY NUM 
+12:</select>
+13:<select id=”nameStudent” parameterClass=”Integer” resultClass=”Student”>
+14: SELECT NUM, NAME 
+15: FROM STUDENTS 
+16: WHERE NUM = #num# 
+17:</select> 
+18:<!-- dynamic SQL 사용 --> 
+19:<delete id=”delStudent” parameterClass=”Student”> 
+20: DELETE STUDENTS 
+21: WHERE NUM = #num# AND NAME = ‘$name$’ 
+22:</delete>
+23:</sqlMap>
